@@ -1,0 +1,126 @@
+export const menuItems = [
+  {
+    id: "1",
+    name: "Grand Chicken Burger",
+    description: "Crispy chicken, cheese, lettuce, sauces",
+    price: 850,
+    category: "Burgers",
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400",
+    popular: true,
+  },
+  {
+    id: "2",
+    name: "Zinger Cheese Burger",
+    description: "Spicy zinger fillet with cheese",
+    price: 750,
+    category: "Burgers",
+    image: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400",
+    popular: true,
+  },
+  {
+    id: "3",
+    name: "Loaded Beef Burger",
+    description: "Beef patty, cheese, special sauce",
+    price: 950,
+    category: "Burgers",
+    image: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400",
+    popular: false,
+  },
+  {
+    id: "4",
+    name: "Chicken Fajita Burger",
+    description: "Fajita chicken, onions, peppers",
+    price: 800,
+    category: "Burgers",
+    image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400",
+    popular: false,
+  },
+  {
+    id: "5",
+    name: "Margherita Pizza",
+    description: "Classic tomato, mozzarella, basil",
+    price: 1200,
+    category: "Pizza",
+    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400",
+    popular: true,
+  },
+  {
+    id: "6",
+    name: "Loaded Fries",
+    description: "Crispy fries with cheese sauce and toppings",
+    price: 450,
+    category: "Fries",
+    image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400",
+    popular: true,
+  },
+  {
+    id: "7",
+    name: "Coke (500ml)",
+    description: "Chilled Coca-Cola",
+    price: 150,
+    category: "Deals",
+    image: "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400",
+    popular: false,
+  },
+];
+
+export const deals = [
+  {
+    id: "d1",
+    title: "MEGA DEAL",
+    subtitle: "Any 2 Burgers + Fries",
+    originalPrice: 2050,
+    dealPrice: 1499,
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400",
+    bgColor: "#C8102E",
+  },
+  {
+    id: "d2",
+    title: "PIZZAS LEGENDS",
+    subtitle: "Buy 1 Get 1 on Selected Pizzas",
+    dealPrice: null,
+    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400",
+    bgColor: "#8B1A1A",
+  },
+  {
+    id: "d3",
+    title: "LOADED FRIES",
+    subtitle: "Starting From",
+    dealPrice: 450,
+    image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400",
+    bgColor: "#C8102E",
+  },
+];
+
+export const orders = [
+  {
+    id: "TBL12345",
+    date: "May 22, 2024 • 4:30 PM",
+    total: 1550,
+    status: "Delivered",
+    items: ["Grand Chicken Burger", "Loaded Fries", "Coke"],
+  },
+  {
+    id: "TBL12310",
+    date: "May 20, 2024 • 7:15 PM",
+    total: 1200,
+    status: "Delivered",
+    items: ["Zinger Cheese Burger", "Margherita Pizza"],
+  },
+  {
+    id: "TBL12205",
+    date: "May 18, 2024 • 1:10 PM",
+    total: 950,
+    status: "Cancelled",
+    items: ["Loaded Beef Burger"],
+  },
+  {
+    id: "TBL12100",
+    date: "May 15, 2024 • 6:45 PM",
+    total: 1350,
+    status: "Delivered",
+    items: ["Grand Chicken Burger", "Loaded Fries"],
+  },
+];
+
+export const categories = ["Burgers", "Pizza", "Fries", "Deals"];
