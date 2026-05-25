@@ -33,7 +33,7 @@ export default function ItemDetailScreen() {
       price: item.price + extras,
       image: item.image,
     });
-    router.back();
+    router.push("/cart");
   };
 
   return (
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
     borderTopColor: Colors.lightGray,
     backgroundColor: Colors.white,
     gap: 16,
-    paddingBottom: 28,
+    paddingBottom: 48,
   },
   quantityRow: { flexDirection: "row", alignItems: "center", gap: 14 },
   qtyBtn: {

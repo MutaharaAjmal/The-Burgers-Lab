@@ -6,122 +6,192 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
+
 import { Colors } from "../../src/constants/Colors";
 import { deals } from "../../src/data/mockData";
 
 export default function DealsScreen() {
-  return (
-    <View style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.title}>Deals & Offers</Text>
-      </View>
+  const router = useRouter();
 
-      <FlatList
-        data={deals}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 28 }}
-        showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <View style={[styles.dealCard, { backgroundColor: item.bgColor }]}>
-            {/* Left Content */}
-            <View style={styles.dealContent}>
-              <View style={styles.dealBadge}>
-                <Text style={styles.dealBadgeText}>🔥 HOT DEAL</Text>
-              </View>
-              <Text style={styles.dealTitle}>{item.title}</Text>
-              <Text style={styles.dealSubtitle}>{item.subtitle}</Text>
-              {item.dealPrice && (
+  const handleOrder = (item: any) => {
+    router.push({
+      pathname: "/item-detail",
+      params: { id: item.id },
+    });
+  };
+
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        {/* HEADER */}
+        <View style={styles.header}>
+          <Text style={styles.title}>Deals & Offers 🔥</Text>
+        </View>
+
+        {/* LIST */}
+        <FlatList
+          data={deals}
+          keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.list}
+          ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
+          renderItem={({ item }) => (
+            <View style={[styles.dealCard, { backgroundColor: item.bgColor }]}>
+              {/* LEFT */}
+              <View style={styles.dealContent}>
+                <View style={styles.dealBadge}>
+                  <Text style={styles.dealBadgeText}>🔥 HOT DEAL</Text>
+                </View>
+
+                <Text style={styles.dealTitle}>{item.title}</Text>
+
+                <Text style={styles.dealSubtitle}>{item.subtitle}</Text>
+
                 <View style={styles.priceRow}>
                   {item.originalPrice && (
                     <Text style={styles.originalPrice}>
                       Rs. {item.originalPrice}
                     </Text>
                   )}
+
                   <Text style={styles.dealPrice}>Rs. {item.dealPrice}</Text>
                 </View>
-              )}
-              <TouchableOpacity style={styles.orderBtn}>
-                <Text style={styles.orderBtnText}>Order Now</Text>
-              </TouchableOpacity>
-            </View>
 
-            {/* Right Image */}
-            <Image source={{ uri: item.image }} style={styles.dealImage} />
-          </View>
-        )}
-        ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
-      />
-    </View>
+                {/* BUTTON FIXED */}
+                <TouchableOpacity
+                  style={styles.orderBtn}
+                  activeOpacity={0.8}
+                  onPress={() => handleOrder(item)}
+                >
+                  <Text style={styles.orderBtnText}>Order Now</Text>
+                </TouchableOpacity>
+              </View>
+
+              {/* RIGHT IMAGE */}
+              <Image source={{ uri: item.image }} style={styles.dealImage} />
+            </View>
+          )}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: Colors.white },
+  safeArea: {
+    flex: 1,
+    backgroundColor: Colors.white,
+  },
+
+  container: {
+    flex: 1,
+    backgroundColor: Colors.white,
+  },
+
   header: {
     paddingHorizontal: 20,
-    paddingTop: 56,
-    paddingBottom: 20,
+    paddingTop: 10,
+    paddingBottom: 16,
   },
-  title: { fontSize: 24, fontWeight: "800", color: Colors.black },
+
+  title: {
+    fontSize: 26,
+    fontWeight: "900",
+    color: Colors.black,
+  },
+
+  list: {
+    paddingHorizontal: 20,
+    paddingBottom: 120,
+  },
+
   dealCard: {
-    borderRadius: 18,
-    overflow: "hidden",
+    borderRadius: 20,
     flexDirection: "row",
     alignItems: "center",
-    padding: 20,
+
+    padding: 18,
     minHeight: 160,
+
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 10,
+    elevation: 5,
   },
-  dealContent: { flex: 1 },
+
+  dealContent: {
+    flex: 1,
+  },
+
   dealBadge: {
-    backgroundColor: "rgba(255,255,255,0.2)",
+    backgroundColor: "rgba(255,255,255,0.25)",
     alignSelf: "flex-start",
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 20,
     marginBottom: 8,
   },
-  dealBadgeText: { fontSize: 11, color: Colors.white, fontWeight: "700" },
+
+  dealBadgeText: {
+    fontSize: 11,
+    color: Colors.white,
+    fontWeight: "700",
+  },
+
   dealTitle: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: "900",
     color: Colors.white,
-    lineHeight: 26,
     marginBottom: 4,
   },
+
   dealSubtitle: {
     fontSize: 13,
     color: "rgba(255,255,255,0.85)",
     marginBottom: 10,
   },
+
   priceRow: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 8,
+    gap: 10,
     marginBottom: 12,
   },
+
   originalPrice: {
     fontSize: 13,
     color: "rgba(255,255,255,0.6)",
     textDecorationLine: "line-through",
   },
+
   dealPrice: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: "900",
     color: Colors.secondary,
   },
+
   orderBtn: {
-    backgroundColor: Colors.secondary,
+    backgroundColor: Colors.white,
     alignSelf: "flex-start",
     paddingHorizontal: 18,
-    paddingVertical: 9,
-    borderRadius: 8,
+    paddingVertical: 10,
+    borderRadius: 12,
   },
-  orderBtnText: { fontSize: 13, fontWeight: "700", color: Colors.white },
+
+  orderBtnText: {
+    fontSize: 13,
+    fontWeight: "800",
+    color: Colors.primary,
+  },
+
   dealImage: {
     width: 110,
     height: 110,
-    borderRadius: 12,
+    borderRadius: 14,
     marginLeft: 12,
   },
 });

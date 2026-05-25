@@ -1,16 +1,16 @@
 export const menuItems = [
   {
     id: "1",
-    name: "Grand Chicken Burger",
+    name: "Double tender Burger",
     description: "Crispy chicken, cheese, lettuce, sauces",
     price: 850,
     category: "Burgers",
     image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400",
-    popular: true,
+    popular: false,
   },
   {
     id: "2",
-    name: "Zinger Cheese Burger",
+    name: "Double greand Spicy",
     description: "Spicy zinger fillet with cheese",
     price: 750,
     category: "Burgers",
@@ -19,7 +19,7 @@ export const menuItems = [
   },
   {
     id: "3",
-    name: "Loaded Beef Burger",
+    name: "Double Chicken Heart",
     description: "Beef patty, cheese, special sauce",
     price: 950,
     category: "Burgers",
@@ -28,7 +28,7 @@ export const menuItems = [
   },
   {
     id: "4",
-    name: "Chicken Fajita Burger",
+    name: "Chicken Grand Spicy",
     description: "Fajita chicken, onions, peppers",
     price: 800,
     category: "Burgers",
@@ -37,6 +37,15 @@ export const menuItems = [
   },
   {
     id: "5",
+    name: "Spicy Crispy Tender ",
+    description: "Fajita chicken, onions, peppers",
+    price: 800,
+    category: "Burgers",
+    image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400",
+    popular: true,
+  },
+  {
+    id: "6",
     name: "Margherita Pizza",
     description: "Classic tomato, mozzarella, basil",
     price: 1200,
@@ -45,7 +54,7 @@ export const menuItems = [
     popular: true,
   },
   {
-    id: "6",
+    id: "7",
     name: "Loaded Fries",
     description: "Crispy fries with cheese sauce and toppings",
     price: 450,
@@ -54,7 +63,7 @@ export const menuItems = [
     popular: true,
   },
   {
-    id: "7",
+    id: "8",
     name: "Coke (500ml)",
     description: "Chilled Coca-Cola",
     price: 150,

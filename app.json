@@ -1,13 +1,20 @@
 {
   "expo": {
-    "name": "TheBurgersLab",
+    "name": "The Burgers Lab",
     "slug": "TheBurgersLab",
     "version": "1.0.0",
     "orientation": "portrait",
+    "scheme": "TheBurgersLab",
     "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mutaharaduaa.TheBurgersLab"
     },
     "android": {
       "adaptiveIcon": {
@@ -22,9 +29,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      "expo-router",
-      "expo-status-bar"
-    ]
+    "plugins": ["expo-router", "expo-status-bar"]
   }
 }
