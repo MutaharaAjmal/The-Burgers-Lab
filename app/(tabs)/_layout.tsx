@@ -1,85 +1,80 @@
-import { Tabs } from "expo-router";
-import { View, Text, StyleSheet, Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+import React from "react";
 import { Colors } from "../../src/constants/Colors";
-import { useCart } from "../../src/context/CartContext";
-
-function TabIcon({
-  icon,
-  label,
-  focused,
-}: {
-  icon: keyof typeof Ionicons.glyphMap;
-  label: string;
-  focused: boolean;
-}) {
-  return (
-    <View style={styles.tabIcon}>
-      <Ionicons
-        name={(focused ? icon : `${icon}-outline`) as any}
-        size={24}
-        color={focused ? Colors.primary : Colors.mediumGray}
-      />
-
-      <Text style={[styles.tabLabel, focused && styles.tabLabelActive]}>
-        {label}
-      </Text>
-    </View>
-  );
-}
-
-function CartTabIcon({ focused }: { focused: boolean }) {
-  const { totalItems } = useCart();
-
-  return (
-    <View style={styles.tabIcon}>
-      <View>
-        <Ionicons
-          name={focused ? "cart" : "cart-outline"}
-          size={24}
-          color={focused ? Colors.primary : Colors.mediumGray}
-        />
-
-        {totalItems > 0 && (
-          <View style={styles.badge}>
-            <Text style={styles.badgeText}>{totalItems}</Text>
-          </View>
-        )}
-      </View>
-
-      <Text style={[styles.tabLabel, focused && styles.tabLabelActive]}>
-        Cart
-      </Text>
-    </View>
-  );
-}
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerShown: false,
-        tabBarShowLabel: false,
-
-        tabBarStyle: styles.tabBar,
-
-        tabBarHideOnKeyboard: true,
+        tabBarActiveTintColor: Colors.primary,
+        tabBarInactiveTintColor: "#9CA3AF",
+        tabBarStyle: {
+          position: "absolute", // Ye tabs ko bottom par handle karne ke liye hai
+          bottom: 0,
+          left: 0,
+          right: 0,
+          elevation: 0,
+          backgroundColor: "#FFFFFF",
+          borderTopWidth: 0,
+          // height: 60, // Apni marzi se adjust karein
+          paddingBottom: 10,
+        },
+        headerStyle: {
+          backgroundColor: Colors.primary,
+        },
+        headerTintColor: Colors.white,
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: "400",
+        },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          tabBarIcon: ({ focused }) => (
-            <TabIcon icon="home" label="Home" focused={focused} />
+          title: "Burger Lub",
+          tabBarLabel: "Home",
+          headerShown: false,
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "home" : "home-outline"}
+              size={24}
+              color={color}
+            />
           ),
         }}
       />
-
       <Tabs.Screen
         name="menu"
         options={{
-          tabBarIcon: ({ focused }) => (
-            <TabIcon icon="restaurant" label="Menu" focused={focused} />
+          title: "Menu",
+          tabBarLabel: "Menu",
+          headerShown: false,
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "restaurant" : "restaurant-outline"}
+              size={24}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="cart"
+        options={{
+          title: "Audio Reader",
+          headerShown: false,
+          tabBarLabel: "Cart",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "cart" : "cart-outline"}
+              size={24}
+              color={color}
+            />
           ),
         }}
       />
@@ -87,99 +82,33 @@ export default function TabLayout() {
       <Tabs.Screen
         name="deals"
         options={{
-          tabBarIcon: ({ focused }) => (
-            <TabIcon icon="pricetags" label="Deals" focused={focused} />
+          title: "Deals",
+          tabBarLabel: "Deals",
+          headerShown: false,
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "pricetags" : "pricetags-outline"}
+              size={24}
+              color={color}
+            />
           ),
         }}
       />
-
-      <Tabs.Screen
-        name="cart"
-        options={{
-          tabBarIcon: ({ focused }) => <CartTabIcon focused={focused} />,
-        }}
-      />
-
       <Tabs.Screen
         name="account"
         options={{
-          tabBarIcon: ({ focused }) => (
-            <TabIcon icon="person" label="Account" focused={focused} />
+          title: "Account",
+          headerShown: false,
+          tabBarLabel: "Account",
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "person" : "person-outline"}
+              size={24}
+              color={color}
+            />
           ),
         }}
       />
     </Tabs>
   );
 }
-
-const styles = StyleSheet.create({
-  tabBar: {
-    position: "absolute",
-
-    left: 16,
-    right: 16,
-    bottom: 40, // 👈 isy change kia
-
-    height: Platform.OS === "ios" ? 78 : 68,
-
-    borderRadius: 22,
-
-    backgroundColor: Colors.white,
-
-    paddingTop: 10,
-    paddingBottom: Platform.OS === "ios" ? 20 : 10,
-
-    borderTopWidth: 0,
-
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.08,
-    shadowRadius: 10,
-
-    elevation: 10,
-  },
-
-  tabIcon: {
-    alignItems: "center",
-    justifyContent: "center",
-    top: 4,
-  },
-
-  tabLabel: {
-    fontSize: 11,
-    fontWeight: "500",
-    color: Colors.mediumGray,
-    marginTop: 4,
-  },
-
-  tabLabelActive: {
-    color: Colors.primary,
-    fontWeight: "700",
-  },
-
-  badge: {
-    position: "absolute",
-    top: -5,
-    right: -10,
-
-    backgroundColor: Colors.primary,
-
-    minWidth: 18,
-    height: 18,
-    borderRadius: 9,
-
-    alignItems: "center",
-    justifyContent: "center",
-
-    paddingHorizontal: 4,
-  },
-
-  badgeText: {
-    fontSize: 10,
-    fontWeight: "700",
-    color: Colors.white,
-  },
-});

@@ -23,7 +23,7 @@ export default function SplashScreen() {
       {/* Bottom Content */}
       <View style={styles.bottomContent}>
         <Text style={styles.welcomeText}>Welcome to</Text>
-        <Text style={styles.brandName}>THE BURGERS LAB</Text>
+        <Text style={styles.brandName}>THE BURGERS LUB</Text>
         <Text style={styles.tagline}>Burgers. Pizza. Happiness.</Text>
 
         <TouchableOpacity

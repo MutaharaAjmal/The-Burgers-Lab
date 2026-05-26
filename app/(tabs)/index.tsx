@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
+  ImageBackground,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
@@ -89,8 +90,26 @@ export default function HomeScreen() {
         </View>
 
         {/* BANNER */}
-
-        <LinearGradient
+        {/* BANNER */}
+        <View style={styles.bannerContainer}>
+          <ImageBackground
+            source={{
+              uri: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=800",
+            }}
+            style={styles.banner}
+            imageStyle={{ borderRadius: 16 }}
+          >
+            <View style={styles.bannerOverlay}>
+              <Text style={styles.bannerTitle}>
+                WHAT'S YOUR{"\n"}MOOD TODAY
+              </Text>
+              <TouchableOpacity style={styles.orderNowBtn}>
+                <Text style={styles.orderNowText}>Order Now</Text>
+              </TouchableOpacity>
+            </View>
+          </ImageBackground>
+        </View>
+        {/* <LinearGradient
           colors={["#FF7A00", "#FF5500"]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
@@ -109,7 +128,7 @@ export default function HomeScreen() {
           <View style={styles.bannerRight}>
             <Text style={styles.bannerEmoji}>🍔</Text>
           </View>
-        </LinearGradient>
+        </LinearGradient> */}
 
         {/* CATEGORIES */}
 
@@ -288,22 +307,36 @@ const styles = StyleSheet.create({
 
   /* BANNER */
 
-  banner: {
-    marginHorizontal: 20,
-    marginBottom: 24,
+  // banner: {
+  //   marginHorizontal: 20,
+  //   marginBottom: 24,
 
-    borderRadius: 24,
+  //   borderRadius: 24,
 
-    paddingVertical: 20,
-    paddingHorizontal: 20,
+  //   paddingVertical: 20,
+  //   paddingHorizontal: 20,
 
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+  //   flexDirection: "row",
+  //   alignItems: "center",
+  //   justifyContent: "space-between",
 
-    overflow: "hidden",
+  //   overflow: "hidden",
+  // },
+  bannerContainer: { paddingHorizontal: 20, marginBottom: 20 },
+  banner: { height: 160, justifyContent: "center" },
+  bannerOverlay: {
+    paddingLeft: 20,
+    backgroundColor: "rgba(0,0,0,0.3)",
+    flex: 1,
+    borderRadius: 16,
+    justifyContent: "center",
   },
-
+  bannerTitle: {
+    color: Colors.white,
+    fontSize: 22,
+    fontWeight: "900",
+    marginBottom: 10,
+  },
   bannerContent: {
     flex: 1,
   },
@@ -325,7 +358,7 @@ const styles = StyleSheet.create({
   },
 
   orderNowBtn: {
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.secondary,
 
     paddingHorizontal: 18,
     paddingVertical: 10,
@@ -336,7 +369,7 @@ const styles = StyleSheet.create({
   },
 
   orderNowText: {
-    color: Colors.primary,
+    color: Colors.white,
 
     fontSize: 13,
     fontWeight: "800",
@@ -395,8 +428,8 @@ const styles = StyleSheet.create({
   },
 
   categoryCircle: {
-    width: 55,
-    height: 55,
+    width: 45,
+    height: 45,
 
     borderRadius: 34,
 
